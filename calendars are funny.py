@@ -13,6 +13,7 @@ def load_file(file):
     useless, start_times, end_times = np.loadtxt(file, dtype=str, delimiter=",", unpack=True)
     return [start_times[1:], end_times[1:]]
 
+
 def do(file_name) -> str:
     x = load_file(file_name)
     pairs = []
@@ -28,7 +29,7 @@ def do(file_name) -> str:
         et = total[t + 1]
         good = True
         for i in pairs:
-            if i[0] == st or i[1] == et:
+            if st in range(i[0], i[1]) and et in range(i[0], i[1]):
                 good = False
 
         if good and (et - st) > rang:
@@ -42,6 +43,10 @@ def do(file_name) -> str:
 
 if __name__ == "__main__":
     print(do("test1.csv"))
+    print(do("test2.csv"))
+    print(do("test3.csv"))
+    print(do("test4.csv"))
+    print(do("test5.csv"))
 
 
 
